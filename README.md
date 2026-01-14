@@ -1,27 +1,29 @@
-Gmail to Google Sheets Automation
-Project Overview
+## Gmail to Google Sheets Automation
+
+## Project Overview
 
 This project is a Python automation system that reads unread emails from a Gmail inbox and logs them into a Google Sheet automatically.
 
 The system uses:
 
-Gmail API to read emails
+- Gmail API to read emails
 
-Google Sheets API to store data
+- Google Sheets API to store data
 
-OAuth 2.0 authentication for secure access
+- OAuth 2.0 authentication for secure access
 
 Each qualifying email is added as a new row in Google Sheets with the following details:
 
-From – Sender email address
+- From – Sender email address
 
-Subject – Email subject
+- Subject – Email subject
 
-Date – Date and time received
+- Date – Date and time received
 
-Content – Email body (plain text)
+- Content – Email body (plain text)
 
-High-Level Architecture / Flow
+## High-Level Architecture / Flow
+
 Gmail Inbox (Unread Emails)
 ↓
 OAuth 2.0 Authentication
@@ -32,32 +34,34 @@ Email Parsing
 ↓
 Google Sheets (Rows Added)
 
-Technologies Used
+## Technologies Used
 
-Python 3
+- Python 3
 
-Google Gmail API
+- Google Gmail API
 
-Google Sheets API
+- Google Sheets API
 
-OAuth 2.0
+- OAuth 2.0
 
-Google API Python Client
+- Google API Python Client
 
-OAuth 2.0 Authentication Flow
+## OAuth 2.0 Authentication Flow
 
 The application uses OAuth 2.0 (Desktop App) authentication.
 
-On the first run, the browser opens and the user grants permission.
+- On the first run, the browser opens and the user grants permission.
 
-Google generates an access token (token.json) which is reused for subsequent runs.
+- Google generates an access token (token.json) which is reused for subsequent runs.
 
-The app runs in testing mode, so a “Google hasn’t verified this app” warning appears (expected behavior).
+- The app runs in testing mode, so a “Google hasn’t verified this app” warning appears (expected behavior).
 
-Security Note:
+## Security Note:
+
 credentials.json and token.json are never committed to GitHub and are excluded using .gitignore.
 
-Project Structure
+## Project Structure
+
 gmail-to-sheets/
 │
 ├── src/
@@ -80,25 +84,26 @@ gmail-to-sheets/
 ├── requirements.txt
 └── README.md
 
-Duplicate Prevention & State Management
+## Duplicate Prevention & State Management
 
 To prevent duplicate rows:
 
-The script stores processed Gmail message IDs in a local file called state.json.
+- The script stores processed Gmail message IDs in a local file called state.json.
 
-On each run, the script checks this state file and skips emails that were already processed.
+- On each run, the script checks this state file and skips emails that were already processed.
 
-Emails are also marked as read after processing.
+- Emails are also marked as read after processing.
 
-Why this approach?
+## Why this approach?
 
-Ensures idempotent execution
+- Ensures idempotent execution
 
-Prevents duplicate entries even if the script is run multiple times
+- Prevents duplicate entries even if the script is run multiple times
 
-Simple and reliable for local automation
+- Simple and reliable for local automation
 
-Setup Instructions
+## Setup Instructions
+
 1️. Clone the Repository
 git clone https://github.com/likhithatalatam/gmail-to-sheets.git
 cd gmail-to-sheets
@@ -115,49 +120,50 @@ Do NOT commit this file
 4️. Run the Script
 python src/main.py
 
-Proof of Execution
+## Proof of Execution
 
 Screenshots are provided in the proof/ folder:
 
-Gmail OAuth consent screen
+- Gmail OAuth consent screen
 
-Terminal output showing successful execution
+- Terminal output showing successful execution
 
-Google Sheet populated with real email data
+- Google Sheet populated with real email data
 
-Git status confirming secrets are not committed
+- Git status confirming secrets are not committed
 
-Challenges Faced & Solutions
+## Challenges Faced & Solutions
+
 Challenge:
 
 OAuth scope errors occurred when adding new permissions.
 
 Solution:
 
-Deleted existing token.json
+- Deleted existing token.json
 
-Re-authenticated with updated scopes
+- Re-authenticated with updated scopes
 
 This ensured correct access for both Gmail and Sheets APIs
 
-Limitations
+## Limitations
 
-Some emails are HTML-only, so plain-text content may be empty.
+- Some emails are HTML-only, so plain-text content may be empty.
 
-Attachments are not processed.
+- Attachments are not processed.
 
-Designed for single-user automation, not multi-user deployment.
+- Designed for single-user automation, not multi-user deployment.
 
-Author
+## Author
 
 Likhitha Talatam
 
-Final Notes
+## Final Notes
 
-The script processes only unread emails
+- The script processes only unread emails
 
-No duplicate rows are created
+- No duplicate rows are created
 
-Secure handling of credentials is ensured
+- Secure handling of credentials is ensured
 
-Fully compliant with assignment requirements
+- Fully compliant with assignment requirements
